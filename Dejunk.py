@@ -161,45 +161,6 @@ class Options(QWidget):
             idc.patch_byte(addr, 0x90)
             addr += 1
 
-    def dejunkcode(self, addr, endaddr):
-        while addr < endaddr:
-            idc.create_insn(addr)
-
-            # #TYPE1
-            # if idc.get_wide_byte(addr) == 0x53 and idc.get_wide_byte(addr+1) == 0x53:
-            #     if idc.print_insn_mnem(addr + 3) == 'call' and idc.get_operand_value(addr + 3, 0) == addr + 8:
-            #         if idc.print_insn_mnem(addr + 9) == 'add':
-            #             next_op = ctypes.c_uint32(idc.get_operand_value(addr + 9, 1)).value
-            #             # print(idc.print_insn_mnem(addr + 16))
-            #             jmp_addr = hex(ctypes.c_uint32(addr + 8 + next_op).value)
-            #             bytejmp=(jmp_addr).encode()
-            #             # nop(addr+16, addr+21)
-            #             # nop(addr+0x17, addr+0x18)
-            #             self.nop(addr, addr+0x18)
-            #             try:
-            #                 ks = Ks(KS_ARCH_X86, KS_MODE_64)
-            #                 encoding, count = ks.asm(b"jmp "+bytejmp,addr+8)
-
-            #                 for i in range(len(encoding)):
-            #                     idc.patch_byte(addr+i,encoding[i])
-            #             except Exception as e:
-            #                 print('[!] Err Address: '+hex(addr))
-            #                 print(e)
-            #                 print(b"jmp "+bytejmp)
-            #                 print(hex(addr+8))
-            #             print('[+] Patched TYPE1: '+hex(addr)+' jmp addr: '+jmp_addr)
-            #             addr+=0x18
-            #             continue
-
-            # TYPE2
-
-            if idc.get_wide_byte(addr) == 0x9C and idc.get_operand_value(addr+2, 1) == 8226:
-                print('[+] Patched TYPE2: '+hex(addr))
-                self.nop(addr, addr+0x10)
-                continue
-            addr += idc.get_item_size(addr)
-
-
 class MyPlugin(idaapi.plugin_t):
     flags = idaapi.PLUGIN_UNL
     wanted_name = "test"
