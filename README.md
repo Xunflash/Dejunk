@@ -7,7 +7,7 @@ An ida plug-in that matches the bulk removal of junk instructions from the progr
 
 ## Features
 
-- All match
+- [x] All match
 
   - Get the instruction of the user input, start address, end the address, and use IDA's search API to remove | 获取用户输入的指令，起始地址，结束地址，利用ida的搜索api来移除
 
@@ -23,10 +23,11 @@ An ida plug-in that matches the bulk removal of junk instructions from the progr
 
     ![image-20230219012951440](./img/image-20230219012951440.png)
 
-- Partial match
+- [x] Partial match
   - Use regular expressions to match the machine code corresponding to the junk instruction | 使用正则表达式来匹配垃圾指令对应的机器码
 
-- Assembly/Machine Code Converting to each other | 汇编机器码互相转换
-- Automatic re-definition function (TODO) | 自动重定义函数（待完成）
-- Right-click the instructions in the assembly interface to fill in the plug-in (TODO) | 汇编界面选中指令右键填入插件（待完成）
+- [x] Assembly/Machine Code Converting to each other | 汇编机器码互相转换
+- [ ] Automatic re-definition function (TODO) | 自动重定义函数（待完成）
+- [x] Right-click the instructions in the assembly interface to fill in the plug-in | 汇编界面选中指令右键填入插件
+- [x] Across architecture support | 跨架构支持
 
